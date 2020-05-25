@@ -1,0 +1,49 @@
+{{#each erros}}
+  <div class="alert alert-danger">{{texto}}</div>
+{{else}}
+
+{{/each}}
+<h3>EDITAR ARTIGO:</h3>
+<div class="card">
+  <div class="card-body">
+    <form class="" action="/painel/artigos/edit" method="POST">
+      <input type="hidden" name="id" value="{{artigos._id}}">
+      <label for="titulo">Título:</label>
+      <input type="text" id="titulo" name="titulo" placeholder="Título do artigo" class="form-control" value="{{artigos.titulo}}"></input>
+      <br>
+      <label for="slug">Slug: </label>
+      <input type="text" id="slug" name="slug" placeholder="Link Único" class="form-control" value="{{artigos.slug}}"></input>
+      <br>
+      <label for="descricao">Descrição: </label>
+      <input type="text" id="descricao" name="descricao" placeholder="Informação resumida" class="form-control" value="{{artigos.descricao}}"></input>
+      <br>
+      <label for="corpo">Corpo: </label>
+      <textarea id="corpo" name="conteudo" placeholder="Escreva aqui o seu artigo" class="form-control">{{artigos.conteudo}}</textarea>
+      <br>
+      <label for="categoria">Categoria: </label>
+      <select id="categoria" name="categoria" class="custom-select">
+        {{#each categoria}}
+          <option value="{{_id}}">{{nome}}</option>
+        {{else}}
+          <option value="0">--</option>
+        {{/each}}
+      </select>
+      <br><br>
+      <button class="btn btn-success">Salvar</button>
+    </form>
+    <script>
+    function atualizaSel(){
+        var categoria = document.getElementById("categoria")
+        var option1 = document.getElementsByTagName("option")
+        var id_sel = "{{artigos.categoria}}"
+
+    for(var i=0; i<option1.length; i++){
+        if(option1[i].value == id_sel){
+            option1[i].setAttribute("selected", "true")
+        }
+    }
+    }
+atualizaSel()
+</script>
+  </div>
+</div>

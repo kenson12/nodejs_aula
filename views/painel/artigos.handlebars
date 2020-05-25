@@ -1,0 +1,23 @@
+<h2>Lista de Artigos</h2>
+<hr>
+<a href="/painel/artigos/add"><button class="btn btn-success">Novo artigo</button></a>
+<br><br>
+{{#each artigos}}
+  <div class="card">
+    <div class="card-body">
+      <h4>{{titulo}}</h4>
+      <small>Data: {{data}}</small><br><br>
+      <small>Descrição: {{descricao}}</small><br><br>
+      <small>Categoria: {{categoria.nome}}</small><br>
+      <small>link: {{slug}}</small><br>
+      <a href="/painel/artigos/edit/{{_id}}"><button class="btn btn-success">Editar</button></a>
+      <form action="/painel/artigos/deletar" method="POST">
+        <input name="id" type="hidden" value="{{_id}}">
+        <button type="submit" class="btn btn-danger mt-2">Deletar</button>
+      </form>
+    </div>
+  </div>
+  <br>
+{{else}}
+  <h5 class="mt-4" style="opacity:0.5;">Nenhum Artigo cadastrado</h5>
+{{/each}}
